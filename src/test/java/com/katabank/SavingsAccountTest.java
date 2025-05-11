@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class SavingsAccountTest {
 
-    private Account account = account = new SavingsAccount(1, BigDecimal.ZERO);
+    private Account account = new SavingsAccount(1, BigDecimal.ZERO);
 
     @Test
     @Order(1)
@@ -62,12 +62,12 @@ class SavingsAccountTest {
         List<Transaction> historyDepositList = account.getHistory(DEPOSIT);
         assertEquals(2, historyDepositList.size());
         account.getHistory(DEPOSIT).forEach(System.out::println);
-        assertEquals("120.30", account.getBalance().setScale(2).toPlainString());
+        assertEquals("120.30", account.getBalance().setScale(2, RoundingMode.HALF_EVEN).toPlainString());
     }
 
     @Test
     @Order(7)
     void getBalance() {
-        assertEquals("120.30", account.getBalance().setScale(2).toPlainString());
+        assertEquals("120.30", account.getBalance().setScale(2, RoundingMode.HALF_EVEN).toPlainString());
     }
 }
