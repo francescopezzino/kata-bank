@@ -21,7 +21,7 @@ public class SavingsAccount implements Account {
 
     @Override
     public void deposit(BigDecimal amount) {
-        if (amount.intValue() > 0) {
+        if (null != amount && amount.intValue() > 0) {
             balance = balance.add(amount);
             transactions.add(new Transaction(DEPOSIT, LocalDateTime.now(), amount, balance));
         }
@@ -29,7 +29,7 @@ public class SavingsAccount implements Account {
 
     @Override
     public void withdraw(BigDecimal amount) {
-        if ( balance.subtract(amount).intValue() < 0) {
+        if (null != amount && balance.subtract(amount).intValue() < 0) {
             transactions.add(new Transaction(NOT_ENOUGH_FUNDS, LocalDateTime.now(), amount, balance));
         } else {
             balance = balance.subtract(amount);
